@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FoodKart - Food Delivery</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    
+    <div id="toast" class="toast"></div>
+
+
+    
+    <header class="topbar">
+
+        <!-- Logo -->
+
+        <a href="#home" class="brand">
+            🍴 FoodKart
+        </a>
+
+
+       
+
+        <div class="location">
+            📍 Kolkata
+            <small>▼</small>
+        </div>
+
+
+       
+
+        <div class="search-wrap">
+
+            <span>⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search for food, restaurants or dishes..."
+            >
+
+            <button id="clearSearch">
+                ×
+            </button>
+
+        </div>
+
+
+        
+
+        <nav>
+
+            <button
+                class="nav-btn"
+                data-view="orders">
+                Orders
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-view="cart">
+
+                🛒
+
+                <b id="cartCount">
+                    0
+                </b>
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                id="themeToggle">
+
+                🌙
+
+            </button>
+
+
+            <button
+                class="profile-btn"
+                id="profileBtn">
+
+                Login
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+   
+
+    <main>
+
+
+        
+
+        <section id="home" class="hero">
+
+            <div class="hero-copy">
+
+                <span class="eyebrow">
+                    FAST • FRESH • LOCAL
+                </span>
+
+
+                <h1>
+
+                    Cravings delivered
+                    <br>
+
+                    <span>
+                        to your door.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Discover delicious food,
+                    add it to your cart,
+                    order online and track
+                    your demo delivery.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <button
+                        class="primary"
+                        id="browseBtn">
+
+                        Explore Food
+
+                    </button>
+
+
+                    <button
+                        class="secondary"
+                        data-view="orders">
+
+                        Track My Order
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+           
+
+            <div class="hero-art">
+
+                <div class="plate">
+                    🍕
+                </div>
+
+                <div class="floating f1">
+                    🍔
+                </div>
+
+                <div class="floating f2">
+                    🍜
+                </div>
+
+                <div class="floating f3">
+                    🥤
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        
+
+        <section class="section">
+
+            <div class="section-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        DISCOVER
+                    </span>
+
+                    <h2>
+                        Popular categories
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="categories">
+
+                <button
+                    class="cat active"
+                    data-cat="all">
+
+                    🍽️
+
+                    <span>
+                        All
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="cat"
+                    data-cat="Pizza">
+
+                    🍕
+
+                    <span>
+                        Pizza
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="cat"
+                    data-cat="Burger">
+
+                    🍔
+
+                    <span>
+                        Burgers
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="cat"
+                    data-cat="Indian">
+
+                    🍛
+
+                    <span>
+                        Indian
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="cat"
+                    data-cat="Chinese">
+
+                    🍜
+
+                    <span>
+                        Chinese
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="cat"
+                    data-cat="Dessert">
+
+                    🍰
+
+                    <span>
+                        Desserts
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="cat"
+                    data-cat="Drinks">
+
+                    🥤
+
+                    <span>
+                        Drinks
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+       
+
+        <section
+            id="food"
+            class="section">
+
+            <div class="section-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        TOP PICKS
+                    </span>
+
+                    <h2 id="foodTitle">
+                        Popular near you
+                    </h2>
+
+                </div>
+
+
+                <span
+                    id="resultCount"
+                    class="muted">
+
+                </span>
+
+            </div>
+
+
+            
+
+            <div
+                id="productGrid"
+                class="product-grid">
+
+            </div>
+
+
+            
+
+            <div
+                id="emptyState"
+                class="empty hidden">
+
+                No food found.
+                Try another search.
+
+            </div>
+
+        </section>
+
+       
+
+<section class="section offers-section">
+
+    <div class="section-head">
+        <div>
+            <span class="eyebrow">
+                EXCLUSIVE DEALS
+            </span>
+
+            <h2>
+                🔥 Today's Best Offers
+            </h2>
+
+            <p class="muted">
+                Save more on your favourite food.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="offers-grid">
+
+        <div class="offer-card">
+            <span class="offer-icon">🍕</span>
+
+            <h3>20% OFF</h3>
+
+            <p>
+                Get 20% off on your first order.
+            </p>
+
+            <strong>
+                WELCOME20
+            </strong>
+
+            <button
+                onclick="copyOffer('WELCOME20')">
+                Copy Code
+            </button>
+        </div>
+
+
+        <div class="offer-card">
+            <span class="offer-icon">🚚</span>
+
+            <h3>FREE DELIVERY</h3>
+
+            <p>
+                Free delivery on orders above ₹299.
+            </p>
+
+            <strong>
+                AUTO APPLIED
+            </strong>
+
+            <button
+                onclick="showToast('🚚 Free delivery applied!')">
+                Order Now
+            </button>
+        </div>
+
+
+        <div class="offer-card">
+            <span class="offer-icon">🎁</span>
+
+            <h3>₹100 OFF</h3>
+
+            <p>
+                Save ₹100 on selected restaurants.
+            </p>
+
+            <strong>
+                FOOD100
+            </strong>
+
+            <button
+                onclick="copyOffer('FOOD100')">
+                Copy Code
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+        <section class="section promo">
+
+            <div>
+
+                <span class="eyebrow">
+                    WHY FOODKART?
+                </span>
+
+                <h2>
+                    Everything you need
+                    in one place.
+                </h2>
+
+            </div>
+
+
+            <div class="benefits">
+
+                <div>
+
+                    ⚡
+
+                    <strong>
+                        Fast delivery
+                    </strong>
+
+                    <span>
+                        Demo live tracking experience
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    🔐
+
+                    <strong>
+                        Secure checkout
+                    </strong>
+
+                    <span>
+                        Login required before ordering
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    💾
+
+                    <strong>
+                        Saved cart
+                    </strong>
+
+                    <span>
+                        Your cart stays after refresh
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    ⭐
+
+                    <strong>
+                        Ratings
+                    </strong>
+
+                    <span>
+                        See food ratings and reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+       
+        <section
+            id="contact"
+            class="section contact">
+
+            <div>
+
+                <span class="eyebrow">
+                    CONTACT
+                </span>
+
+                <h2>
+                    Need help with your order?
+                </h2>
+
+                <p>
+
+                    For this demo,
+                    contact support using
+                    the details below.
+
+                </p>
+
+            </div>
+
+
+            <div class="contact-cards">
+
+                <div>
+
+                    📞
+
+                    <strong>
+                        +91 9708829220
+                    </strong>
+
+                    <small>
+                        Customer support
+                    </small>
+
+                </div>
+
+
+                <div>
+
+                    ✉️
+
+                    <strong>
+                        jhabuggu69@gmail.com
+                    </strong>
+
+                    <small>
+                        24/7 demo support
+                    </small>
+
+                </div>
+
+
+                <div>
+
+                    📍
+
+                    <strong>
+                        Kolkata, India
+                    </strong>
+
+                    <small>
+                        Service location
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+   
+
+    <footer>
+
+        <span>
+            © 2026 FoodKart
+        </span>
+
+
+        <div>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+            <a href="#" data-view="profile">
+                Profile
+            </a>
+
+            <a href="#" data-view="orders">
+                Order History
+            </a>
+
+        </div>
+
+    </footer>
+
+
+
+    
+
+    <div
+        id="productModal"
+        class="modal">
+
+        <div class="modal-card product-modal">
+
+            <button
+                class="close"
+                data-close="productModal">
+
+                ×
+
+            </button>
+
+
+            
+
+            <div id="productDetail">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+   
+    <div
+        id="cartModal"
+        class="modal">
+
+        <div class="modal-card">
+
+            <button
+                class="close"
+                data-close="cartModal">
+
+                ×
+
+            </button>
+
+
+            <div class="modal-title">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOUR CART
+                    </span>
+
+                    <h2>
+                        Order basket
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+           
+
+            <div id="cartItems">
+
+            </div>
+
+
+            
+
+            <div id="cartSummary">
+
+            </div>
+
+
+            <button
+                id="checkoutBtn"
+                class="primary full">
+
+                Proceed to Checkout
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+   
+
+    <div
+        id="loginModal"
+        class="modal">
+
+        <div class="modal-card auth-card">
+
+            <button
+                class="close"
+                data-close="loginModal">
+
+                ×
+
+            </button>
+
+
+            <div class="auth-logo">
+                🍴
+            </div>
+
+
+            <span class="eyebrow">
+                WELCOME BACK
+            </span>
+
+
+            <h2>
+                Login to order
+            </h2>
+
+
+            <p class="muted">
+
+                You must be logged in
+                before placing an order.
+
+            </p>
+
+
+            <form id="loginForm">
+
+                <label>
+
+                    Name
+
+                    <input
+                        id="loginName"
+                        required
+                        placeholder="Your name">
+
+                </label>
+
+
+                <label>
+
+                    Email
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        required
+                        placeholder="you@example.com">
+
+                </label>
+
+
+                <label>
+
+                    Password
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        minlength="4"
+                        required
+                        placeholder="••••••••">
+
+                </label>
+
+
+                <button
+                    class="primary full">
+
+                    Login /
+                    Create Demo Account
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- CHECKOUT MODAL -->
+    <!-- ================================================= -->
+
+    <div
+        id="checkoutModal"
+        class="modal">
+
+        <div class="modal-card checkout-card">
+
+            <button
+                class="close"
+                data-close="checkoutModal">
+
+                ×
+
+            </button>
+
+
+            <span class="eyebrow">
+                CHECKOUT
+            </span>
+
+
+            <h2>
+                Complete your order
+            </h2>
+
+
+            <form id="orderForm">
+
+
+                <!-- Customer Information -->
+
+                <div class="form-grid">
+
+                    <label>
+
+                        Full name
+
+                        <input
+                            id="orderName"
+                            required>
+
+                    </label>
+
+
+                    <label>
+
+                        Mobile
+
+                        <input
+                            id="orderPhone"
+                            required
+                            pattern="[0-9]{10}"
+                            placeholder="10 digit mobile">
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- Address -->
+
+                <label>
+
+                    Delivery address
+
+                    <textarea
+                        id="orderAddress"
+                        required
+                        placeholder="House no., street, area, city">
+                    </textarea>
+
+                </label>
+
+
+                <button
+                    type="button"
+                    id="saveAddress"
+                    class="secondary small-btn">
+
+                    💾 Save this address
+
+                </button>
+
+
+
+                <!-- Payment -->
+
+                <div class="payment-box">
+
+                    <h3>
+                        Payment
+                    </h3>
+
+
+                    <div class="payment-options">
+
+                        <label class="radio">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="UPI"
+                                checked>
+
+                            UPI / QR
+
+                        </label>
+
+
+                        <label class="radio">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="COD">
+
+                            Cash on Delivery
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- QR -->
+
+                    <div id="qrArea">
+
+                        <!-- Replace this with your own QR image later -->
+
+                        <div class="qr-placeholder">
+
+                            YOUR
+                            <br>
+                            QR
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Scan to Pay
+                            </strong>
+
+
+                            <p>
+
+                                UPI ID:
+
+                                <b id="upiId">
+                                    yourname@upi
+                                </b>
+
+                            </p>
+
+
+                            <button
+                                type="button"
+                                class="text-btn"
+                                id="editUpi">
+
+                                Edit UPI ID
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Saved Addresses -->
+
+                <div
+                    class="saved-addresses"
+                    id="savedAddresses">
+
+                </div>
+
+
+
+                <!-- Total -->
+
+                <div
+                    id="checkoutTotal"
+                    class="checkout-total">
+
+                </div>
+
+
+
+                <button
+                    class="primary full">
+
+                    Place Order
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- ORDER HISTORY -->
+    <!-- ================================================= -->
+
+    <div
+        id="ordersModal"
+        class="modal">
+
+        <div class="modal-card wide">
+
+            <button
+                class="close"
+                data-close="ordersModal">
+
+                ×
+
+            </button>
+
+
+            <span class="eyebrow">
+                MY ORDERS
+            </span>
+
+
+            <h2>
+                Order history & tracking
+            </h2>
+
+
+            <!-- Javascript will insert orders -->
+
+            <div id="ordersList">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- PROFILE -->
+    <!-- ================================================= -->
+
+    <div
+        id="profileModal"
+        class="modal">
+
+        <div class="modal-card">
+
+            <button
+                class="close"
+                data-close="profileModal">
+
+                ×
+
+            </button>
+
+
+            <!-- Javascript will insert profile -->
+
+            <div id="profileContent">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
